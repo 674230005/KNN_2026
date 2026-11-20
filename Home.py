@@ -4,7 +4,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
-st.header("โปรเจคการจำแนกข้อมูลดอกไม้")
+st.header("โปรเจคการจำแนกข้อมูลโรคหัวใจ")
 #st.image("./img/kairung022.jpg")
 col1, col2, col3 = st.columns(3)
 
@@ -22,7 +22,7 @@ with col3:
 
 html_7 = """
 <div style="background-color:#EC7063;padding:15px;border-radius:15px 15px 15px 15px;border-style:'solid';border-color:black">
-<center><h5>สถิติข้อมูลดอกไม้</h5></center>
+<center><h5>สถิติข้อมูลข้อมูลโรคหัวใจ</h5></center>
 </div>
 """
 st.markdown(html_7, unsafe_allow_html=True)
@@ -30,10 +30,10 @@ st.markdown("")
 dt = pd.read_csv("./data/iris.csv")
 st.write(dt.head(10))
 
-dt1 = dt['petallength'].sum()
-dt2 = dt['petalwidth'].sum()
-dt3 = dt['sepallength'].sum()
-dt4 = dt['sepalwidth'].sum()
+dt1 = dt['Cholesterol'].mean()
+dt2 = dt['RestingECG'].mean()
+dt3 = dt['HeartDisease'].mean()
+dt4 = dt['MaxHR'].mean()
 
 dx = [dt1, dt2, dt3, dt4]
 dx2 = pd.DataFrame(dx, index=["d1", "d2", "d3", "d4"])
@@ -75,10 +75,10 @@ if st.button("ทำนายผล"):
    out=Knn_model.predict(x_input)
 
    if out[0] == 'Setosa':
-    st.image("./img/iris1.jpg")
+    st.image("./img/h1.png")
    elif out[0] == 'Versicolor':       
-    st.image("./img/iris2.jpg")
+    st.image("./img/h2.png")
    else:
-    st.image("./img/iris3.jpg")
+    st.image("./img/h3.png")
 else:
     st.write("ไม่ทำนาย")
