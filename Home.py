@@ -5,7 +5,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 st.header("โปรเจคการจำแนกข้อมูลโรคหัวใจ")
-#st.image("./img/kairung022.jpg")
+
 col1, col2 = st.columns(2)
 
 with col1:
@@ -21,8 +21,10 @@ html_7 = """
 <center><h5>สถิติข้อมูลข้อมูลโรคหัวใจ</h5></center>
 </div>
 """
+
 st.markdown(html_7, unsafe_allow_html=True)
 st.markdown("")
+
 dt = pd.read_csv("./data/Heart3.csv")
 st.write(dt.head(10))
 
@@ -35,7 +37,6 @@ dx = [dt1, dt2, dt3, dt4]
 dx2 = pd.DataFrame(dx, index=["d1", "d2", "d3", "d4"])
 
 if st.button("แสดงการจินตทัศน์ข้อมูล"):
-   #st.write(dt.head(10))
    st.bar_chart(dx2)
    st.button("ไม่แสดงข้อมูล")
 else:
@@ -46,33 +47,31 @@ html_8 = """
 <center><h5>ทำนายข้อมูล</h5></center>
 </div>
 """
+
 st.markdown(html_8, unsafe_allow_html=True)
 st.markdown("")
 
+pt_len = st.slider("Age", min_value=1, max_value=100, value=20)
+pt_wd = st.slider("Sex", min_value=0, max_value=1)
 
-pt_len = st.slider("Age petal.length", min_value=1,max_value=100,value=20)
-pt_wd = st.slider("กรุณาเลือกข้อมูล petal.width")
-
-sp_len = st.number_input("กรุณาเลือกข้อมูล sepal.length")
-sp_wd = st.number_input("กรุณาเลือกข้อมูล sepal.width")
+sp_len = st.number_input("Cholesterol")
+sp_wd = st.number_input("MaxHR")
 
 if st.button("ทำนายผล"):
-   #st.write("ทำนาย")
-   #dt = pd.read_csv("./data/iris.csv") 
+   X = dt.drop('HeartDisease', axis=1)
+   y = dt['HeartDisease']
 
-   X = dt.drop('variety', axis=1)
-   y = dt.variety   
    Knn_model = KNeighborsClassifier(n_neighbors=3)
-   Knn_model.fit(X, y)  
+   Knn_model.fit(X, y)
 
-   x_input = np.array([[pt_len, pt_wd, sp_len, sp_wd]]) #ข้อมูลใหม่สำหรับทำนาย
+   x_input = np.array([[pt_len, pt_wd, sp_len, sp_wd]])
 
-   st.write(Knn_model.predict(x_input))   
-   out=Knn_model.predict(x_input)
+   st.write(Knn_model.predict(x_input))
+   out = Knn_model.predict(x_input)
 
-   if out[0] == 'Setosa':
-    st.image("./img/h1.png")
+   if out[0] == 1:
+      st.image("./img/h1.png")
    else:
-    st.image("./img/h3.png")
+      st.image("./img/h3.png")
 else:
     st.write("ไม่ทำนาย")
