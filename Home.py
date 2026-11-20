@@ -54,8 +54,17 @@ st.markdown("")
 pt_len = st.slider("Age", min_value=1, max_value=100, value=20)
 pt_wd = st.slider("Sex", min_value=0, max_value=1)
 
+chest = st.selectbox("ChestPainType", [0, 1, 2, 3])
+bp = st.number_input("RestingBP", value=120)
+
 sp_len = st.number_input("Cholesterol")
+fast = st.selectbox("FastingBS", [0, 1])
+ecg = st.selectbox("RestingECG", [0, 1, 2])
+
 sp_wd = st.number_input("MaxHR")
+angina = st.selectbox("ExerciseAngina", [0, 1])
+oldpeak = st.number_input("Oldpeak", value=0.0)
+slope = st.selectbox("ST_Slope", [0, 1, 2])
 
 if st.button("ทำนายผล"):
    X = dt.drop('HeartDisease', axis=1)
@@ -64,7 +73,19 @@ if st.button("ทำนายผล"):
    Knn_model = KNeighborsClassifier(n_neighbors=3)
    Knn_model.fit(X, y)
 
-   x_input = np.array([[pt_len, pt_wd, sp_len, sp_wd]])
+   x_input = np.array([[
+       pt_len,
+       pt_wd,
+       chest,
+       bp,
+       sp_len,
+       fast,
+       ecg,
+       sp_wd,
+       angina,
+       oldpeak,
+       slope
+   ]])
 
    st.write(Knn_model.predict(x_input))
    out = Knn_model.predict(x_input)
