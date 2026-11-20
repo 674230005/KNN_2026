@@ -18,7 +18,7 @@ with col2:
 
 with col3:
    st.header("คนไม่เป็นโรคหัวใจ")
-   st.image("./img/Pawaret005.jpg")
+   st.image("./img/h4.png")
 
 html_7 = """
 <div style="background-color:#EC7063;padding:15px;border-radius:15px 15px 15px 15px;border-style:'solid';border-color:black">
