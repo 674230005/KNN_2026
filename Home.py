@@ -9,11 +9,11 @@ st.header("โปรเจคการจำแนกข้อมูลโรค
 col1, col2 = st.columns(2)
 
 with col1:
-   st.header("Versicolor")
+   st.header("คนเป็นโรคหัวใจ")
    st.image("./img/h1.png")
 
 with col2:
-   st.header("Verginiga")
+   st.header("คนไม่เป็นโรคหัวใจ")
    st.image("./img/Pawaret005.jpg")
 
 html_7 = """
@@ -23,7 +23,7 @@ html_7 = """
 """
 st.markdown(html_7, unsafe_allow_html=True)
 st.markdown("")
-dt = pd.read_csv("./data/iris.csv")
+dt = pd.read_csv("./data/Heart3.csv")
 st.write(dt.head(10))
 
 dt1 = dt['Cholesterol'].mean()
