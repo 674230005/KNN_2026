@@ -6,19 +6,15 @@ import matplotlib.pyplot as plt
 
 st.header("โปรเจคการจำแนกข้อมูลโรคหัวใจ")
 #st.image("./img/kairung022.jpg")
-col1, col2, col3 = st.columns(3)
+col1, col2 = st.columns(2)
 
 with col1:
    st.header("Versicolor")
-   st.image("./img/iris1.jpg")
+   st.image("./img/h1.png")
 
 with col2:
    st.header("Verginiga")
-   st.image("./img/iris2.jpg")
-
-with col3:
-   st.header("Setosa")
-   st.image("./img/iris3.jpg")
+   st.image("./img/Pawaret005.jpg")
 
 html_7 = """
 <div style="background-color:#EC7063;padding:15px;border-radius:15px 15px 15px 15px;border-style:'solid';border-color:black">
@@ -54,7 +50,7 @@ st.markdown(html_8, unsafe_allow_html=True)
 st.markdown("")
 
 
-pt_len = st.slider("กรุณาเลือกข้อมูล petal.length")
+pt_len = st.slider("Age petal.length", min_value=1,max_value=100,value=20)
 pt_wd = st.slider("กรุณาเลือกข้อมูล petal.width")
 
 sp_len = st.number_input("กรุณาเลือกข้อมูล sepal.length")
@@ -76,8 +72,6 @@ if st.button("ทำนายผล"):
 
    if out[0] == 'Setosa':
     st.image("./img/h1.png")
-   elif out[0] == 'Versicolor':       
-    st.image("./img/h2.png")
    else:
     st.image("./img/h3.png")
 else:
